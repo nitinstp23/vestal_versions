@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+
 Gem::Specification.new do |gem|
   gem.name    = 'vestal_versions'
   gem.version = '2.0.0'
@@ -14,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'activerecord', '>= 3', '< 5'
   gem.add_dependency 'activesupport', '>= 3', '< 5'
 
+  gem.add_development_dependency 'railties', '>= 3', '< 5'
   gem.add_development_dependency 'bundler', '~> 1.0'
   gem.add_development_dependency 'rake', '~> 10.0'
 

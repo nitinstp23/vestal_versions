@@ -3,6 +3,9 @@ require 'active_support/dependencies/autoload'
 require 'active_support/core_ext/module/delegation'
 require 'active_record'
 
+require 'vestal_versions/rails/engine'
+require 'vestal_versions/rails/controller'
+
 # +vestal_versions+ keeps track of updates to ActiveRecord models, leveraging the introduction of
 # dirty attributes in Rails 2.1. By storing only the updated attributes in a serialized column of a
 # single version model, the history is kept DRY and no additional schema changes are necessary.
@@ -28,6 +31,7 @@ require 'active_record'
 
 # The base module that gets included in ActiveRecord::Base. See the documentation for
 # VestalVersions::ClassMethods for more useful information.
+
 module VestalVersions
   extend ActiveSupport::Concern
   extend ActiveSupport::Autoload
@@ -50,6 +54,11 @@ module VestalVersions
 
   class << self
     delegate :config, :configure, :to => Version
+
+    # Thread-safe hash to hold request info.
+    def vestal_versions_store
+      Thread.current[:vestal_versions] ||= Hash.new({})
+    end
   end
 
   included do

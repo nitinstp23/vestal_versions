@@ -48,8 +48,8 @@ module VestalVersions
     end
 
     # Creates a new version upon updating the parent record.
-    def create_version(attributes = nil)
-      versions.create(attributes || version_attributes)
+    def create_version(attributes = {})
+      versions.create attributes.merge(version_attributes)
       reset_version_changes
       reset_version
     end
@@ -87,7 +87,7 @@ module VestalVersions
     # Specifies the attributes used during version creation. This is separated into its own
     # method so that it can be overridden by the VestalVersions::Users feature.
     def version_attributes
-      {:modifications => version_changes, :number => last_version + 1}
+      self.class.vestal_versions_store.merge({:modifications => version_changes, :number => last_version + 1})
     end
   end
 end
