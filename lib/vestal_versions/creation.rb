@@ -21,15 +21,15 @@ module VestalVersions
         self.vestal_versions_options[:only] = Array(options.delete(:only)).map(&:to_s).uniq if options[:only]
         self.vestal_versions_options[:except] = Array(options.delete(:except)).map(&:to_s).uniq if options[:except]
         self.vestal_versions_options[:initial_version] = options.delete(:initial_version)
-        
+
         result
       end
     end
 
     # Instance methods that determine whether to save a version and actually perform the save.
-    
+
     private
-    
+
     # Returns whether an initial version should be created upon creation of the parent record.
     def create_initial_version?
       vestal_versions_options[:initial_version] == true
@@ -41,15 +41,15 @@ module VestalVersions
       reset_version_changes
       reset_version
     end
-            
+
     # Returns whether a new version should be created upon updating the parent record.
     def create_version?
       !version_changes.blank?
     end
 
     # Creates a new version upon updating the parent record.
-    def create_version(attributes = {})
-      versions.create attributes.merge(version_attributes)
+    def create_version(attributes = nil)
+      versions.create(attributes || version_attributes)
       reset_version_changes
       reset_version
     end
@@ -87,7 +87,10 @@ module VestalVersions
     # Specifies the attributes used during version creation. This is separated into its own
     # method so that it can be overridden by the VestalVersions::Users feature.
     def version_attributes
-      self.class.vestal_versions_store.merge({:modifications => version_changes, :number => last_version + 1})
+      ::VestalVersions.vestal_versions_store.merge({
+        :modifications => version_changes,
+        :number => last_version + 1
+      })
     end
   end
 end
