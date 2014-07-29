@@ -1,6 +1,8 @@
 require 'rails/engine'
 
 module VestalVersions
-  class Engine < ::Rails::Engine
+  module Rails
+    class Engine < ::Rails::Engine
+    end
   end
 end

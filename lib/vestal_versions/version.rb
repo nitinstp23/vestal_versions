@@ -11,7 +11,7 @@ module VestalVersions
     belongs_to :versioned, :polymorphic => true
 
     if ActiveRecord::VERSION::MAJOR == 3
-      attr_accessible :modifications, :number, :user, :tag, :reverted_from
+      attr_accessible :modifications, :number, :user, :tag, :reverted_from, :ip_address, :user_agent, :request_url
     end
 
     # ActiveRecord::Base#changes is an existing method, so before serializing the +changes+ column,
