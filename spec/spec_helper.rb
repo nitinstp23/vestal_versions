@@ -1,3 +1,7 @@
+require 'rails'
+
+ENV['RAILS_ENV'] = 'test'
+
 if ENV['COVERAGE']
   require 'coveralls'
   Coveralls.wear!

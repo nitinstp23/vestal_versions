@@ -55,9 +55,9 @@ module VestalVersions
   class << self
     delegate :config, :configure, :to => Version
 
-    # Thread-safe hash to hold request info.
+    # Hash to hold controller request info.
     def vestal_versions_store
-      Thread.current[:vestal_versions] ||= Hash.new({})
+      @version_store ||= Hash.new({})
     end
   end
 
