@@ -19,6 +19,9 @@ class CreateSchema < ActiveRecord::Migration
       t.integer :number
       t.integer :reverted_from
       t.string :tag
+      t.string :ip_address
+      t.string :user_agent
+      t.string :request_url
       t.timestamps
     end
   end

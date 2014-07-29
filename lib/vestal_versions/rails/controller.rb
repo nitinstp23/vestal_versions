@@ -16,7 +16,8 @@ module VestalVersions
       private
 
       def user_for_vestal_versions
-        return unless defined?(current_profile)
+        return unless defined?(current_user) || defined?(current_profile)
+        return current_user if defined?(current_user)
         current_profile
       rescue NoMethodError
         nil

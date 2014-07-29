@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe VestalVersions::Versions do
-  let(:user){ User.create(:name => 'Stephen Richert') }
+  let(:user) { User.create(:name => 'Stephen Richert') }
 
   before do
     user.update_attribute(:name, 'Steve Jobs')
@@ -40,7 +40,7 @@ describe VestalVersions::Versions do
     version.number.should == 1
     version.should be_initial
   end
-  
+
   it "sreturn the version number if it is not a revert" do
     user.version.should == user.versions.last.original_number
   end
@@ -57,5 +57,5 @@ describe VestalVersions::Versions do
     user.revert_to!(version)
     user.versions.last.original_number.should == 2
   end
-  
+
 end

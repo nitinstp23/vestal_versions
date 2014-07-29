@@ -1,19 +1,37 @@
 require 'spec_helper'
 
 describe VestalVersions::Creation do
-  let(:name){ 'Steve Richert' }
-  subject{ User.create(:name => name) }
+  let(:name) { 'Steve Richert' }
+
+  let(:request_info) do
+    {
+      :user => User.create(:name => 'David Heinemeier Hansson'),
+      :ip_address => '127.0.0.1',
+      :user_agent => 'curl/7.22.0 (i686-pc-linux-gnu) libcurl/7.22.0',
+      :request_url => 'http://localhost:3000'
+    }
+  end
+
+  subject { User.create(:name => name) }
+
+  def set_request_info
+    VestalVersions.vestal_versions_store.merge!(request_info)
+  end
 
   context 'the number of versions' do
 
-    its('versions.count'){ should == 0 }
+    it 'initial count should be zero' do
+      subject.versions.count.should == 0
+    end
 
     context 'with :initial_version option' do
       before do
         User.prepare_versioned_options(:initial_version => true)
       end
 
-      its('versions.count'){ should == 1 }
+      it 'increases count by one' do
+        subject.versions.count.should == 1
+      end
     end
 
     it 'does not increase when no changes are made in an update' do
@@ -87,4 +105,17 @@ describe VestalVersions::Creation do
     end
   end
 
+  context 'request info' do
+    it 'stores request info' do
+      set_request_info
+
+      subject.update_attribute(:last_name, 'Smith')
+      latest_version = subject.versions.last
+
+      latest_version.user.should        == request_info[:user]
+      latest_version.ip_address.should  == request_info[:ip_address]
+      latest_version.user_agent.should  == request_info[:user_agent]
+      latest_version.request_url.should == request_info[:request_url]
+    end
+  end
 end

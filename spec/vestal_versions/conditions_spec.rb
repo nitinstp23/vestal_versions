@@ -46,7 +46,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count + 1 }
+        it 'count should increase by one' do
+          subject.versions.count.should == count + 1
+        end
       end
 
       context 'that fail' do
@@ -55,7 +57,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count }
+        it 'count should not increase' do
+          subject.versions.count.should == count
+        end
       end
     end
 
@@ -66,7 +70,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count }
+        it 'count should not increase' do
+          subject.versions.count.should == count
+        end
       end
 
       context 'that fail' do
@@ -75,7 +81,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count + 1 }
+        it 'count should increase by one' do
+          subject.versions.count.should == count + 1
+        end
       end
     end
 
@@ -86,7 +94,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count }
+        it 'count should not increase' do
+          subject.versions.count.should == count
+        end
       end
 
       context 'that fail' do
@@ -95,7 +105,9 @@ describe VestalVersions::Conditions do
           subject.update_attribute(:last_name, 'Jobs')
         end
 
-        its('versions.count'){ should == count }
+        it 'count should not increase' do
+          subject.versions.count.should == count
+        end
       end
     end
 
