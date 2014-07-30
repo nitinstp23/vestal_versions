@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'activerecord', '>= 3', '<= 4.1.0'
   gem.add_dependency 'activesupport', '>= 3', '<= 4.1.0'
 
-  gem.add_development_dependency 'railties', '>= 3', '<= 4.1.0'
+  # gem.add_development_dependency 'railties', '>= 3', '<= 4.1.0'
   gem.add_development_dependency 'bundler', '~> 1.0'
   gem.add_development_dependency 'rake', '~> 10.0'
 
