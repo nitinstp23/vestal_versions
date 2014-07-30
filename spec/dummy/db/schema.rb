@@ -9,24 +9,24 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended that you check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730091201) do
+ActiveRecord::Schema.define(:version => 20140730091201) do
 
-  create_table "lessons", force: true do |t|
+  create_table "lessons", :force => true do |t|
     t.string   "title"
     t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "students", force: true do |t|
+  create_table "students", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "versions", force: true do |t|
+  create_table "versions", :force => true do |t|
     t.integer  "versioned_id"
     t.string   "versioned_type"
     t.integer  "user_id"
@@ -36,18 +36,18 @@ ActiveRecord::Schema.define(version: 20140730091201) do
     t.integer  "number"
     t.integer  "reverted_from"
     t.string   "tag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "ip_address"
     t.string   "user_agent"
     t.string   "request_url"
   end
 
-  add_index "versions", ["created_at"], name: "index_versions_on_created_at"
-  add_index "versions", ["number"], name: "index_versions_on_number"
-  add_index "versions", ["tag"], name: "index_versions_on_tag"
-  add_index "versions", ["user_id", "user_type"], name: "index_versions_on_user_id_and_user_type"
-  add_index "versions", ["user_name"], name: "index_versions_on_user_name"
-  add_index "versions", ["versioned_id", "versioned_type"], name: "index_versions_on_versioned_id_and_versioned_type"
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["tag"], :name => "index_versions_on_tag"
+  add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
+  add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
+  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
 
 end
