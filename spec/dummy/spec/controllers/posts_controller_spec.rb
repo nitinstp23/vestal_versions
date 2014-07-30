@@ -1,7 +1,8 @@
-require 'spec_helper'
+require_relative '../spec_helper'
 
 RSpec.describe PostsController, :type => :controller do
   describe 'PUT #update' do
+
     before do
       @user = User.new(name: 'Sandi Metz')
       @user.save!
