@@ -15,13 +15,10 @@ module VestalVersions
 
       private
 
-      def user_for_vestal_versions
-        return unless defined?(current_user) || defined?(current_profile)
-        return current_user if defined?(current_user)
-        current_profile
-      rescue NoMethodError
-        nil
-      end
+      # Override this method in your controller
+      # to get current_user.
+      def user_for_vestal_versions; end
+
     end
   end
 
