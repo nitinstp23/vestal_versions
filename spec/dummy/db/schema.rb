@@ -13,14 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20140730091201) do
 
-  create_table "posts", force: true do |t|
+  create_table "lessons", force: true do |t|
     t.string   "title"
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "students", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

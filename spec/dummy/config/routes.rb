@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	resources :users, only: [] do
-		resources :posts, only: [:update]
+	resources :students, only: [] do
+		resources :lessons, only: [:update]
 	end
 end

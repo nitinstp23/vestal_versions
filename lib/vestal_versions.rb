@@ -3,7 +3,6 @@ require 'active_support/dependencies/autoload'
 require 'active_support/core_ext/module/delegation'
 require 'active_record'
 
-require 'vestal_versions/rails/engine'
 require 'vestal_versions/rails/controller'
 
 # +vestal_versions+ keeps track of updates to ActiveRecord models, leveraging the introduction of
